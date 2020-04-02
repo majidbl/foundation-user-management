@@ -1,0 +1,30 @@
+{% extends "Layout.html" %}
+
+{% block content %}
+<div class="table-responsive-sm">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">username</th>
+      <th scope="col">Father Name</th>
+      <th scope="col">Identity Number</th>
+      <th scope="col">Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users%}
+    <tr>
+      <th scope="row">{{user.id}}</th>
+      <td>{{user.username}}</td>
+      <td>{{user.fathername}}</td>
+      <td>{{user.identitynumber}}</td>
+      <td>{{user.email}}</td>
+      <td><a href="dashboard/users/{{user.id}}" class="btn btn-primary">EDIT</a></td>
+    </tr>
+    <tr>
+     {% endfor%}
+  </tbody>
+</table>
+</div>
+{% endblock content %}

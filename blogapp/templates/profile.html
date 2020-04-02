@@ -1,0 +1,70 @@
+{% extends "Layout.html" %}
+
+{% block content %}
+
+<h2>{{user.username}}</h2>
+<h2>{{user.fathername}}</h2>
+
+<div class="table-responsive-sm">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col"> Donation Money </th>
+      <th scope="col"> Donation Date </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for money in moneys%}
+    <tr>
+      <th scope="row">{{money.id}}</th>
+      <td>{{money.amount}}</td>
+       <td>{{money.editdate.year}}/{{money.editdate.month}}/{{money.editdate.day}} , {{money.editdate.hour}}: {{money.editdate.minute}}</td>
+         <td><form method="post"><button name="btnvalue" value="deletemoney {{money.id}}" class="btn btn-danger">DELETE</button></form></td>
+    </tr>
+     {% endfor%}
+  </tbody>
+</table>
+</div>
+
+<form method="post">
+  <div class="form-group">
+     <input type="input" class="form-control" id="donationmoney" name="donationmoney" aria-describedby="emailHelp" placeholder="Enter Donation Money Amount">
+      </div>
+  <div class="form-group">
+  <button type="submit" class="btn btn-primary" name="btnvalue" value="AddMoney">Add</button>
+  </div>
+</form>
+<p>-------------------------------------</p>
+
+<div class="table-responsive-sm">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col"> Donation Items</th>
+      <th scope="col"> Donation Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for supply in supplies %}
+    <tr>
+      <th scope="row">{{supply.id}}</th>
+      <td>{{supply.amount}}</td>
+      <td>{{supply.editdate.year}}/{{supply.editdate.month}}/{{supply.editdate.day}} , {{supply.editdate.hour}}: {{supply.editdate.minute}}</td>
+      <td><form method="post"><button name="btnvalue" value="deleteitem {{supply.id}}" class="btn btn-danger">DELETE</button></form></td>
+    </tr>
+     {% endfor%}
+  </tbody>
+</table>
+</div>
+
+<form method="post">
+  <div class="form-group">
+     <input type="input" class="form-control" id="donationitem" name="donationitem" aria-describedby="emailHelp" placeholder="Enter Donation Items">
+  </div>
+  <div class="form-group">
+  <button type="submit" class="btn btn-primary" name="btnvalue" value="AddItem">Add</button>
+  </div>
+</form>
+{% endblock content %}

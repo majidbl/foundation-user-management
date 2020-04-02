@@ -1,0 +1,23 @@
+
+{% extends "Layout.html" %}
+
+{% block content%}
+<!--
+<div class="d-flex justify-content-center">
+<i class="fas fa-sign-in-alt"></i>
+</div>
+-->
+<form method="post" class="card p-3">
+
+
+<div class="form-group">
+    <label for="exampleInputusername">Username</label>
+    <input type="input" class="form-control rounded shadow-lg" id="username" name="username" aria-describedby="emailHelp" placeholder="Enter Username">
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control rounded shadow-lg" name="password" id="password" placeholder="Password">
+  </div>
+  <button type="submit" name="loginbtn"  value="Loginvalue" class="btn btn-primary rounded shadow-lg">Login</button>
+</form>
+{% endblock content%}
