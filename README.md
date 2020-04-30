@@ -1,6 +1,8 @@
 # foundation-user-management
 Just clone from GitHub and run:
  
+## Install
+
 **pip install requirements.txt**.
 
 ## TODO:
