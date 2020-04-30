@@ -5,75 +5,87 @@
 <h2>{{user.username}}</h2>
 <h2>{{user.fathername}}</h2>
 
-  <script type="text/javascript">
-      function myFunction() {
-        const filter = document.querySelector('#myInput').value.toUpperCase();
-        const trs = document.querySelectorAll('#myTable tr:not(.header)');
-        trs.forEach(tr => tr.style.display = [...tr.children].find(td => td.innerHTML.toUpperCase().includes(filter)) ? '' : 'none');
-      }
-  </script>
-  <div class="container pt-2">
-  <input class="rounded shadow-lg m-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-<div class="table-responsive-sm">
-<table id="myTable" class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px"> Donation Money </th>
-      <th scope="col" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px"> Donation Date </th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for money in moneys%}
-    <tr>
-      <th scope="row" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{money.id}}</th>
-      <td style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{money.amount}}</td>
-       <td style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{money.editdate.year}}/{{money.editdate.month}}/{{money.editdate.day}} , {{money.editdate.hour}}:{{money.editdate.minute}}</td>
-         <td><form method="post"><button name="btnvalue" value="deletemoney {{money.id}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></form></td>
-    </tr>
-     {% endfor%}
-  </tbody>
-</table>
+<div class="container pt-2">
+  <table data-toggle="table" data-search="true" data-show-columns="true" data-sort-class="table-active"
+    data-sortable="true">
+    <thead class="thead-dark">
+      <tr>
+        <th data-sortable="true">id</th>
+        <th data-sortable="true" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">
+          Donation Money </th>
+        <th data-sortable="true" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">
+          Donation Date </th>
+        <th data-sortable="true" style="text-align:center;"> Options </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for money in moneys%}
+      <tr>
+        <td scope="row" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{money.id}}</td>
+        <td style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{money.amount}}</td>
+        <td style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">
+          {{money.editdate.year}}/{{money.editdate.month}}/{{money.editdate.day}} ,
+          {{money.editdate.hour}}:{{money.editdate.minute}}</td>
+        <td>
+          <form method="post"><button name="btnvalue" value="deletemoney {{money.id}}" class="btn btn-danger"><i
+                class="fas fa-trash-alt"></i></button></form>
+        </td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+
+  <form method="post">
+    <div class="form-group">
+      <input type="input" class="form-control" id="donationmoney" name="donationmoney" aria-describedby="emailHelp"
+        placeholder="Enter Donation Money Amount">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" name="btnvalue" value="AddMoney"><i
+          class="fas fa-plus-square"></i></button>
+    </div>
+  </form>
+  <p>-------------------------------------</p>
+  <table data-toggle="table" data-search="true" data-show-columns="true" data-sort-class="table-active"
+    data-sortable="true">
+    <thead class="thead-dark">
+      <tr>
+        <th data-sortable="true">id</th>
+        <th data-sortable="true" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px"> Donation Items
+        </th>
+        <th data-sortable="true" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px"> Donation Date
+        </th>
+        <th data-sortable="true" style="text-align:center;"> Options </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for supply in supplies %}
+      <tr>
+        <td scope="row" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{supply.id}}
+        </td>
+        <td style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{supply.amount}}</td>
+        <td style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">
+          {{supply.editdate.year}}/{{supply.editdate.month}}/{{supply.editdate.day}} ,
+          {{supply.editdate.hour}}:{{supply.editdate.minute}}</td>
+        <td>
+          <form method="post"><button name="btnvalue" value="deleteitem {{supply.id}}" class="btn btn-danger"><i
+                class="fas fa-trash-alt"></i></button></form>
+        </td>
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table>
+
+  <form method="post">
+    <div class="form-group">
+      <input type="input" class="form-control" id="donationitem" name="donationitem" aria-describedby="emailHelp"
+        placeholder="Enter Donation Items">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary" name="btnvalue" value="AddItem"><i
+          class="fas fa-plus-square"></i></button>
+    </div>
+  </form>
+
 </div>
-
-<form method="post">
-  <div class="form-group">
-     <input type="input" class="form-control" id="donationmoney" name="donationmoney" aria-describedby="emailHelp" placeholder="Enter Donation Money Amount">
-      </div>
-  <div class="form-group">
-  <button type="submit" class="btn btn-primary" name="btnvalue" value="AddMoney"><i class="fas fa-plus-square"></i></button>
-  </div>
-</form>
-<p>-------------------------------------</p>
-
-<div class="table-responsive-sm">
-<table id="myTable" class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">id</th>
-      <th scope="col" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px"> Donation Items</th>
-      <th scope="col" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px"> Donation Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for supply in supplies %}
-    <tr>
-      <th scope="row" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{supply.id}}</th>
-      <td style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{supply.amount}}</td>
-      <td style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">{{supply.editdate.year}}/{{supply.editdate.month}}/{{supply.editdate.day}} , {{supply.editdate.hour}}:{{supply.editdate.minute}}</td>
-      <td><form method="post"><button name="btnvalue" value="deleteitem {{supply.id}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></button></form></td>
-    </tr>
-     {% endfor%}
-  </tbody>
-</table>
-</div>
-
-<form method="post">
-  <div class="form-group">
-     <input type="input" class="form-control" id="donationitem" name="donationitem" aria-describedby="emailHelp" placeholder="Enter Donation Items">
-  </div>
-  <div class="form-group">
-  <button type="submit" class="btn btn-primary" name="btnvalue" value="AddItem"><i class="fas fa-plus-square"></i></button>
-  </div>
-</form>
 {% endblock content %}

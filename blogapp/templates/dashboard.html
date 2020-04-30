@@ -1,24 +1,21 @@
 {% extends "Layout.html" %}
 
 {% block content %}
-  <script type="text/javascript">
-      function myFunction() {
-        const filter = document.querySelector('#myInput').value.toUpperCase();
-        const trs = document.querySelectorAll('#myTable tr:not(.header)');
-        trs.forEach(tr => tr.style.display = [...tr.children].find(td => td.innerHTML.toUpperCase().includes(filter)) ? '' : 'none');
-      }
-  </script>
+
 <div class="container pt-2">
-  <input class="rounded shadow-lg m-2" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-<table id="myTable" class="table-responsive shadow-lg rounded-lg">
-  <thead >
+<table  data-toggle="table"
+data-search="true"
+data-show-columns="true"
+data-sort-class="table-active"
+data-sortable="true">
+  <thead class="thead-dark">
     <tr>
-      <th scope="col" style="text-align:center; padding:10px">آیدی</th>
-      <th scope="col" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">نام کاربری</th>
-      <th scope="col" style="text-align: center;
+      <th data-sortable="true" style="text-align:center; padding:10px">آیدی</th>
+      <th data-sortable="true" style="text-align:center; padding:20px; padding-right:40px; padding-left:40px">نام کاربری</th>
+      <th data-sortable="true" style="text-align: center;
     height:2em;">نام پدر</th>
-      <th style="text-align: center;" scope="col">شماره ملی  </th>
-      <th scope="col" style="text-align:center;">ایمیل</th>
+      <th data-sortable="true" style="text-align: center;">شماره ملی  </th>
+      <th data-sortable="true" style="text-align:center;">ایمیل</th>
       <th>گزینه‌ها</th>
     </tr>
   </thead>
@@ -38,6 +35,3 @@
 </table>
 </div>
 {% endblock content %}
-
-{% block script %}
-{% endblock script %}
