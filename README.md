@@ -1,4 +1,4 @@
-# foundation-user-management
+# foundation-user-management with Flask, SQLite
 Just clone from GitHub and run:
  
 ## Install
